@@ -1,0 +1,28 @@
+<header th:replace="header"></header>
+<div>
+    <a th:href="@{/document/create}">
+        <div id="add_document">
+            Добавить документ
+        </div>
+    </a>
+    <br>
+</div>
+
+<table>
+    <tbody th:each="doc : ${documents}">
+    <tr class="header">
+        <td th:text="${doc.number}"></td>
+        <td th:text="${doc.date}"></td>
+        <td th:text="${doc.amount}"></td>
+        <td th:text="${doc.note}"></td>
+        <td><a th:href="@{/document/edit/{docId}(docId=${doc.id})}">редактировать</a></td>
+    </tr>
+    <tr th:each="pos : ${doc.positions}">
+        <td th:text="${pos.name}"></td>
+        <td th:text="${pos.number}"></td>
+        <td th:text="${pos.amount}"></td>
+        <td colspan="2"></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="footer"></footer>

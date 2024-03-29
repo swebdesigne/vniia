@@ -1,0 +1,30 @@
+<header th:replace="header"></header>
+
+<form th:action="@{/document/add}" method="post" th:object="${document}">
+    <div>
+        <label>Номер документа:
+            <input type="text" th:field="*{number}" id="code" required>
+        </label>
+    </div>
+    <div>
+        <label>Дата:
+            <input type="date" th:field="*{date}" required>
+        </label>
+    </div>
+    <div>
+        <label>Примечание:
+            <input type="text" th:field="*{note}">
+        </label>
+    </div>
+
+    <div id="positions">
+        <!-- Здесь будут добавляться поля для каждой позиции -->
+    </div>
+    <br>
+
+    <button type="button" id="addPosition">Добавить позицию</button>
+    <button type="submit">Добавить документ</button>
+</form>
+
+<footer th:replace="footer"></footer>
+

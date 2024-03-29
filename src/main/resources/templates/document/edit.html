@@ -1,0 +1,37 @@
+<header th:replace="header"></header>
+<form th:action="@{/document/update}" method="post" th:object="${document}">
+    <input type="hidden" th:field="*{id}">
+
+    <div>
+        <label>Document Number:
+            <input type="text" th:field="*{number}" id="code">
+        </label>
+    </div>
+    <div>
+        <label>Date:
+            <input type="date" th:field="*{date}"/>
+        </label>
+    </div>
+    <div>
+        <label>Note:
+            <input type="text" th:field="*{note}">
+        </label>
+    </div>
+
+    <div id="positions">
+        <div th:if="${document.positions != null}" th:each="pos, posIndex : ${document.positions}">
+            <div>
+                <label>Позиция <span th:text="${posIndex.index + 1}"></span>:</label>
+                <input type="text" th:field="*{positions[__${posIndex.index}__].name}">
+                <input type="text" th:field="*{positions[__${posIndex.index}__].number}">
+                <input type="text" th:field="*{positions[__${posIndex.index}__].amount}">
+                <span th:id="${pos.id}" th:text="Удалить" class="deletePosition"></span>
+            </div>
+        </div>
+    </div>
+    <br>
+    <button type="button" id="addPosition">Добавить позицию</button>
+    <button type="submit">Обновить</button>
+</form>
+<a th:href="@{|/document/delete/${document.id}|}" th:text="Удалить"></a>
+<footer th:replace="footer"></footer>
